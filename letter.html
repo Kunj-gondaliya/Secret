@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mukku — My Only One</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+<style>
+  body {
+    margin: 0;
+    background: radial-gradient(circle  at top left, #ffe4ec, #f8cdda);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #book {
+    width: 800px;
+    height: 500px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    border-radius: 12px;
+    background: transparent;
+  }
+
+  .page {
+    background: linear-gradient(135deg, #fff8fa, #ffe9f0);
+    color: #4a2b3a;
+    text-align: center;
+    padding: 60px 40px;
+    font-size: 18px;
+    line-height: 1.7;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.08);
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+    margin-bottom: 20px;
+    color: #d66d9c;
+  }
+
+  .hint {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    color: rgba(0,0,0,0.4);
+    font-size: 13px;
+  }
+
+  @media(max-width: 850px){
+    #book{width: 95vw; height: 70vh;}
+    .page{padding: 40px 20px; font-size: 16px;}
+    h1{font-size: 34px;}
+  }
+
+  audio {display: none;}
+</style>
+</head>
+<body>
+
+<div id="book">
+  <div class="page">
+    <h1>For Mukku</h1>
+    <p>There are a thousand ways to say I love you, but none feel enough when it comes to you. From the quiet moments to the endless laughter, you’ve filled my days with a kind of peace I never knew existed. This little book is my heart, written one page at a time for you.</p>
+    <div class="hint">Tap or click to open the letter 💌</div>
+  </div>
+
+  <div class="page">
+    <p>Every time I see you smile, something in me pauses — as if the world knows it’s witnessing something sacred. You don’t even have to say a word, Mukku; your presence alone feels like the softest poem written just for my soul.</p>
+  </div>
+
+  <div class="page">
+    <p>When life feels heavy, I think of you — and suddenly, the weight becomes lighter. You’ve been my calm in the chaos, my laughter on dull days, my reminder that even in a loud world, love can be soft and gentle.</p>
+  </div>
+
+  <div class="page">
+    <p>There’s something about the way you exist, Mukku — the way you care, the way you dream, the way you love without trying. You make the simplest moments glow in a color I didn’t know life could hold.</p>
+  </div>
+
+  <div class="page">
+    <p>If I could gift you anything, it would be the way I see you — the way you light up rooms, change moods, and make hearts feel like home. You are not one among many, you are the one among all.</p>
+  </div>
+
+  <div class="page">
+    <p>And so, as you close this letter, I want you to remember this — you are my once-in-a-lifetime. My reason, my rhythm, my peace. Forever isn’t a word I use easily, but with you, it finally makes sense.</p>
+  </div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="https://cdn.simple-music.org/soft-piano.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  $(window).on('load', function() {
+    $("#book").turn({
+      width: $("#book").width(),
+      height: $("#book").height(),
+      autoCenter: true,
+      gradients: true,
+      acceleration: true,
+      duration: 1200,
+      elevation: 50,
+      when: {
+        turned: function(e, page) {
+          console.log('Current view: ', $(this).turn('view'));
+        }
+      }
+    });
+
+    const music = document.getElementById('bgMusic');
+    let started = false;
+
+    document.body.addEventListener('click', () => {
+      if (!started) {
+        music.play().catch(err => console.log('Autoplay prevented:', err));
+        started = true;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
