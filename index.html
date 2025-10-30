@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Mukku — My Only One</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+
+<!-- ✅ Correct Turn.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+
 <style>
   body {
     margin: 0;
-    background: radial-gradient(circle  at top left, #ffe4ec, #f8cdda);
+    background: radial-gradient(circle at top left, #ffe4ec, #f8cdda);
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
@@ -100,28 +102,25 @@
 </audio>
 
 <script>
-  $(window).on('load', function() {
-    $("#book").turn({
-      width: $("#book").width(),
-      height: $("#book").height(),
+  window.addEventListener('load', () => {
+    const book = document.getElementById('book');
+
+    $(book).turn({
+      width: 800,
+      height: 500,
       autoCenter: true,
       gradients: true,
       acceleration: true,
-      duration: 1200,
       elevation: 50,
-      when: {
-        turned: function(e, page) {
-          console.log('Current view: ', $(this).turn('view'));
-        }
-      }
+      duration: 1500
     });
 
+    // Handle music start
     const music = document.getElementById('bgMusic');
     let started = false;
-
     document.body.addEventListener('click', () => {
       if (!started) {
-        music.play().catch(err => console.log('Autoplay prevented:', err));
+        music.play().catch(err => console.log('Autoplay blocked'));
         started = true;
       }
     });
